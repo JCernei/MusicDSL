@@ -1,0 +1,14 @@
+function simpleNote do
+    play 50
+    sleep 0.5
+end
+var notes = [50, 60, 80]
+use piano
+for each note in notes do
+    play note
+    sleep 0.5
+end
+use violin
+repeat 3 times
+    simpleNote
+end
