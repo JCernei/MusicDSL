@@ -23,8 +23,8 @@ class NotePlayer:
     # def play        
 
     def generateNote(self, note):
-        note = 440*2**((note-69)/12)
-        tone = librosa.tone(note, duration=1)
+        frequency = 440*2**((note-69)/12)
+        tone = librosa.tone(frequency, duration=1)
         tone = librosa.effects.preemphasis(tone)
         tone = np.repeat(tone.reshape(len(tone), 1), 2, axis = 1)
         return tone
