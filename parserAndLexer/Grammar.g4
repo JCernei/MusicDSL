@@ -3,54 +3,63 @@ grammar Grammar;
 program : listOfCommands ;
 listOfCommands : basicCommands+   
     | initializationCommands+
-    | basicCommands listOfCommands
-    | initializationCommands listOfCommands ;
-
+    | basicCommands+ initializationCommands+
+    | initializationCommands+ basicCommands+
+    ;
+    
 basicCommands : playCommand
     | sleepCommand 
     | useCommand 
     | repeatCommand
     | forEachCommand 
-    | functionCallCommand ;
+    | functionCallCommand 
+    ;
 
 playCommand : PLAY naturalValue 
     | PLAY variableName 
     | PLAY functionName
-    | playCommand basicCommands ;			
+    ;			
 
 sleepCommand : SLEEP time 
     | SLEEP variableName 
-    | sleepCommand basicCommands ;
+    ;
 
 time : floatValue ;
 floatValue : naturalValue dot naturalValue 
-    | naturalValue ;
+    | naturalValue 
+    ;
 
 useCommand : USE instrument 
-    | useCommand basicCommands ;
+    ;
 
-repeatCommand : REPEAT naturalValue TIMES basicCommands END
-    | repeatCommand basicCommands;
+repeatCommand : REPEAT naturalValue TIMES listOfCommands END
+    ;
 
-forEachCommand : FOR EACH variableName IN listName DO basicCommands END
-    | forEachCommand basicCommands ;
+forEachCommand : FOR EACH variableName IN listName DO listOfCommands END
+    ;
 
 functionCallCommand : functionName 
-    | functionCallCommand basicCommands ;
+    ;
 
 initializationCommands : initializeFunction 
     | initializeVariable ;
 
-initializeVariable : Var variableName equals value ;
+initializeVariable : Var variableName equals value 
+    ;
 value : naturalValue 
     | floatValue 
-    | '['naturalList']' 
-    | '['floatList']' ;
-naturalList : naturalValue comma naturalList | naturalValue |  ;
-floatList : floatValue comma floatList | floatValue |  ;
+    | Lbracket naturalList Rbracket 
+    | Lbracket floatList Rbracket 
+    ;
+naturalList : naturalValue comma naturalList | naturalValue
+    ;
+floatList : floatValue comma floatList | floatValue
+    ;
 
-initializeFunction : FUNCTION functionName DO functionBody END ;
-functionBody : basicCommands ;
+initializeFunction : FUNCTION functionName DO functionBody END
+    ;
+functionBody : listOfCommands
+    ;
 
 naturalValue : DIGIT+ ;
 variableName : (LOWERCASE | UPPERCASE | '_' | DIGIT)+ ;
@@ -85,4 +94,6 @@ BOL : (' '| '\t' | '\n' | '\r')+ -> channel(HIDDEN) ;
 dot : '.' ;
 comma : ',' ;
 equals : '=' ;
+Lbracket : '[' ;
+Rbracket : ']' ;
 
