@@ -2,6 +2,7 @@ import librosa
 import encode
 import pygame
 import numpy as np
+import time
 
 class NotePlayer:
     def __init__(self) -> None:
@@ -13,7 +14,8 @@ class NotePlayer:
         soundObj = pygame.sndarray.make_sound(encode.as_int16(tone))
         length = soundObj.get_length()
         soundObj.play()
-        pygame.time.wait(int(length * 1000))
+        # pygame.time.wait(int(length*1000))
+        time.sleep(length)
         
     # def enqueue(self, note):
     #     tone = self.generateNote(note)
@@ -21,7 +23,7 @@ class NotePlayer:
     #     self.queue.append(soundObj)
 
     # def play        
-
+ 
     def generateNote(self, note):
         frequency = 440*2**((note-69)/12)
         tone = librosa.tone(frequency, duration=1)
