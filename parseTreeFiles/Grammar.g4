@@ -3,8 +3,8 @@ grammar Grammar;
 program : listOfCommands ;
 listOfCommands : basicCommands+   
     | initializationCommands+
-    | basicCommands+ initializationCommands+
-    | initializationCommands+ basicCommands+
+    | basicCommands+ listOfCommands
+    | initializationCommands+ listOfCommands
     ;
     
 basicCommands : playCommand
@@ -18,6 +18,7 @@ basicCommands : playCommand
 playCommand : PLAY naturalValue 
     | PLAY variableName 
     | PLAY functionName
+    | PLAY Lbracket naturalList Rbracket
     ;			
 
 sleepCommand : SLEEP time 

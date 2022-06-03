@@ -2,6 +2,7 @@ function simpleNote do
     play 50
     sleep 0.5
 end
+play [50, 70, 80]
 var notes = [50, 60, 80]
 use piano
 for each note in notes do
