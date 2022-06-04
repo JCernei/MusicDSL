@@ -53,15 +53,6 @@ class GrammarListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by GrammarParser#time.
-    def enterTime(self, ctx:GrammarParser.TimeContext):
-        pass
-
-    # Exit a parse tree produced by GrammarParser#time.
-    def exitTime(self, ctx:GrammarParser.TimeContext):
-        pass
-
-
     # Enter a parse tree produced by GrammarParser#floatValue.
     def enterFloatValue(self, ctx:GrammarParser.FloatValueContext):
         pass

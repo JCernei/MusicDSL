@@ -21,11 +21,10 @@ playCommand : PLAY naturalValue
     | PLAY Lbracket naturalList Rbracket
     ;			
 
-sleepCommand : SLEEP time 
+sleepCommand : SLEEP floatValue 
     | SLEEP variableName 
     ;
 
-time : floatValue ;
 floatValue : naturalValue dot naturalValue 
     | naturalValue 
     ;

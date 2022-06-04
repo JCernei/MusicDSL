@@ -57,16 +57,6 @@ public interface GrammarListener extends ParseTreeListener {
 	 */
 	void exitSleepCommand(GrammarParser.SleepCommandContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link GrammarParser#time}.
-	 * @param ctx the parse tree
-	 */
-	void enterTime(GrammarParser.TimeContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link GrammarParser#time}.
-	 * @param ctx the parse tree
-	 */
-	void exitTime(GrammarParser.TimeContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link GrammarParser#floatValue}.
 	 * @param ctx the parse tree
 	 */
