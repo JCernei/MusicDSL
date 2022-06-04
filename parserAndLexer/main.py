@@ -3,53 +3,51 @@ from GrammarLexer import GrammarLexer
 from GrammarListener import GrammarListener
 from GrammarParser import GrammarParser
 from notePlayer import NotePlayer
-from concurrent.futures import ThreadPoolExecutor, as_completed
+from threading import Thread
+import time
+from ArgumentParser import ArgumentParser
 
 player = NotePlayer()
 
 class GrammarPrintListener(GrammarListener):
     def enterProgram(self, ctx):
-        print(f'Hello: {ctx.listOfCommands()}')
+        self.note_threads = []
 
-    def _extract_int(self, naturalValue):
-        naturalValue = [i.symbol.text for i in naturalValue.children]
-        naturalValue = int(''.join(naturalValue))
-        return naturalValue
-    
-    def _extract_list(self, listChildren):
-        to_parse = listChildren
-        values = []
-        while len(to_parse) > 0:
-            if len(to_parse) == 1:
-                values.append(self._extract_int(to_parse[0]))
-                break
-            values.append(self._extract_int(to_parse[0]))
-            to_parse = to_parse[2].children
-
-        return values
-            
 
     def enterPlayCommand(self, ctx: GrammarParser.PlayCommandContext):
         to_play = []
         if ctx.naturalValue():
-            to_play = [self._extract_int(ctx.naturalValue())]
+            to_play = [ArgumentParser.extract_int(ctx.naturalValue())]
         
         if ctx.naturalList():
-            to_play = self._extract_list(ctx.naturalList().children)
+            to_play = ArgumentParser.extract_list(ctx.naturalList().children)
+        
+        for note in to_play:
+            new_thread = Thread(target=player.playNote, args=(note,))
+            new_thread.start()
+            self.note_threads.append(new_thread)
 
-        with ThreadPoolExecutor(max_workers=10) as executor:
-            future_to_note = {executor.submit(player.playNote, note): note for note in to_play}
-            for future in as_completed(future_to_note):
-                note = future_to_note[future]
-                data = future.result()
-                print(note)
-                
+
+    def enterSleepCommand(self, ctx: GrammarParser.SleepCommandContext):
+        for thread in self.note_threads:
+            thread.join()
+        self.note_threads = []
+
+        if ctx.floatValue():
+            value = ArgumentParser.extract_float(ctx.floatValue().naturalValue())
+            time.sleep(value)
+
+
+    def exitProgram(self, ctx: GrammarParser.ProgramContext):
+        for thread in self.note_threads:
+            thread.join()
               
 
 test_program = \
-    '''play 80
-play [50]
-play 80'''
+    '''play 50
+play 60
+play 40'''
+
 
 def main():
     # lexer = GrammarLexer(StdinStream())
