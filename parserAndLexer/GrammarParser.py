@@ -196,6 +196,12 @@ class GrammarParser ( Parser ):
             if hasattr( listener, "exitProgram" ):
                 listener.exitProgram(self)
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitProgram" ):
+                return visitor.visitProgram(self)
+            else:
+                return visitor.visitChildren(self)
+
 
 
 
@@ -251,6 +257,12 @@ class GrammarParser ( Parser ):
         def exitRule(self, listener:ParseTreeListener):
             if hasattr( listener, "exitListOfCommands" ):
                 listener.exitListOfCommands(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitListOfCommands" ):
+                return visitor.visitListOfCommands(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -388,6 +400,12 @@ class GrammarParser ( Parser ):
             if hasattr( listener, "exitBasicCommands" ):
                 listener.exitBasicCommands(self)
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitBasicCommands" ):
+                return visitor.visitBasicCommands(self)
+            else:
+                return visitor.visitChildren(self)
+
 
 
 
@@ -484,6 +502,12 @@ class GrammarParser ( Parser ):
             if hasattr( listener, "exitPlayCommand" ):
                 listener.exitPlayCommand(self)
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitPlayCommand" ):
+                return visitor.visitPlayCommand(self)
+            else:
+                return visitor.visitChildren(self)
+
 
 
 
@@ -570,6 +594,12 @@ class GrammarParser ( Parser ):
             if hasattr( listener, "exitSleepCommand" ):
                 listener.exitSleepCommand(self)
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitSleepCommand" ):
+                return visitor.visitSleepCommand(self)
+            else:
+                return visitor.visitChildren(self)
+
 
 
 
@@ -636,6 +666,12 @@ class GrammarParser ( Parser ):
             if hasattr( listener, "exitFloatValue" ):
                 listener.exitFloatValue(self)
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitFloatValue" ):
+                return visitor.visitFloatValue(self)
+            else:
+                return visitor.visitChildren(self)
+
 
 
 
@@ -698,6 +734,12 @@ class GrammarParser ( Parser ):
             if hasattr( listener, "exitUseCommand" ):
                 listener.exitUseCommand(self)
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitUseCommand" ):
+                return visitor.visitUseCommand(self)
+            else:
+                return visitor.visitChildren(self)
+
 
 
 
@@ -754,6 +796,12 @@ class GrammarParser ( Parser ):
         def exitRule(self, listener:ParseTreeListener):
             if hasattr( listener, "exitRepeatCommand" ):
                 listener.exitRepeatCommand(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitRepeatCommand" ):
+                return visitor.visitRepeatCommand(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -828,6 +876,12 @@ class GrammarParser ( Parser ):
             if hasattr( listener, "exitForEachCommand" ):
                 listener.exitForEachCommand(self)
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitForEachCommand" ):
+                return visitor.visitForEachCommand(self)
+            else:
+                return visitor.visitChildren(self)
+
 
 
 
@@ -884,6 +938,12 @@ class GrammarParser ( Parser ):
             if hasattr( listener, "exitFunctionCallCommand" ):
                 listener.exitFunctionCallCommand(self)
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitFunctionCallCommand" ):
+                return visitor.visitFunctionCallCommand(self)
+            else:
+                return visitor.visitChildren(self)
+
 
 
 
@@ -929,6 +989,12 @@ class GrammarParser ( Parser ):
         def exitRule(self, listener:ParseTreeListener):
             if hasattr( listener, "exitInitializationCommands" ):
                 listener.exitInitializationCommands(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitInitializationCommands" ):
+                return visitor.visitInitializationCommands(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -996,6 +1062,12 @@ class GrammarParser ( Parser ):
             if hasattr( listener, "exitInitializeVariable" ):
                 listener.exitInitializeVariable(self)
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitInitializeVariable" ):
+                return visitor.visitInitializeVariable(self)
+            else:
+                return visitor.visitChildren(self)
+
 
 
 
@@ -1061,6 +1133,12 @@ class GrammarParser ( Parser ):
         def exitRule(self, listener:ParseTreeListener):
             if hasattr( listener, "exitValue" ):
                 listener.exitValue(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitValue" ):
+                return visitor.visitValue(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -1145,6 +1223,12 @@ class GrammarParser ( Parser ):
             if hasattr( listener, "exitNaturalList" ):
                 listener.exitNaturalList(self)
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitNaturalList" ):
+                return visitor.visitNaturalList(self)
+            else:
+                return visitor.visitChildren(self)
+
 
 
 
@@ -1211,6 +1295,12 @@ class GrammarParser ( Parser ):
         def exitRule(self, listener:ParseTreeListener):
             if hasattr( listener, "exitFloatList" ):
                 listener.exitFloatList(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitFloatList" ):
+                return visitor.visitFloatList(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -1284,6 +1374,12 @@ class GrammarParser ( Parser ):
             if hasattr( listener, "exitInitializeFunction" ):
                 listener.exitInitializeFunction(self)
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitInitializeFunction" ):
+                return visitor.visitInitializeFunction(self)
+            else:
+                return visitor.visitChildren(self)
+
 
 
 
@@ -1334,6 +1430,12 @@ class GrammarParser ( Parser ):
             if hasattr( listener, "exitFunctionBody" ):
                 listener.exitFunctionBody(self)
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitFunctionBody" ):
+                return visitor.visitFunctionBody(self)
+            else:
+                return visitor.visitChildren(self)
+
 
 
 
@@ -1377,6 +1479,12 @@ class GrammarParser ( Parser ):
         def exitRule(self, listener:ParseTreeListener):
             if hasattr( listener, "exitNaturalValue" ):
                 listener.exitNaturalValue(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitNaturalValue" ):
+                return visitor.visitNaturalValue(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -1445,6 +1553,12 @@ class GrammarParser ( Parser ):
         def exitRule(self, listener:ParseTreeListener):
             if hasattr( listener, "exitVariableName" ):
                 listener.exitVariableName(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitVariableName" ):
+                return visitor.visitVariableName(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -1520,6 +1634,12 @@ class GrammarParser ( Parser ):
             if hasattr( listener, "exitListName" ):
                 listener.exitListName(self)
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitListName" ):
+                return visitor.visitListName(self)
+            else:
+                return visitor.visitChildren(self)
+
 
 
 
@@ -1592,6 +1712,12 @@ class GrammarParser ( Parser ):
             if hasattr( listener, "exitFunctionName" ):
                 listener.exitFunctionName(self)
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitFunctionName" ):
+                return visitor.visitFunctionName(self)
+            else:
+                return visitor.visitChildren(self)
+
 
 
 
@@ -1649,6 +1775,12 @@ class GrammarParser ( Parser ):
             if hasattr( listener, "exitInstrument" ):
                 listener.exitInstrument(self)
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitInstrument" ):
+                return visitor.visitInstrument(self)
+            else:
+                return visitor.visitChildren(self)
+
 
 
 
@@ -1694,6 +1826,12 @@ class GrammarParser ( Parser ):
             if hasattr( listener, "exitDot" ):
                 listener.exitDot(self)
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitDot" ):
+                return visitor.visitDot(self)
+            else:
+                return visitor.visitChildren(self)
+
 
 
 
@@ -1733,6 +1871,12 @@ class GrammarParser ( Parser ):
             if hasattr( listener, "exitComma" ):
                 listener.exitComma(self)
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitComma" ):
+                return visitor.visitComma(self)
+            else:
+                return visitor.visitChildren(self)
+
 
 
 
@@ -1771,6 +1915,12 @@ class GrammarParser ( Parser ):
         def exitRule(self, listener:ParseTreeListener):
             if hasattr( listener, "exitEquals" ):
                 listener.exitEquals(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitEquals" ):
+                return visitor.visitEquals(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
